@@ -6,18 +6,18 @@ namespace IoC.Web.Controllers
 {
     public class HomeController : Controller
     {
-        // Bir request bir nesne olusacak ve onu kullanacak. Yani her requestte yenisi olusacak.
-        private readonly IScopedDateService _scopedDateService;
+        // Her enjekte edildiğinde bir nesne örneği olusturacak. requestten bağımsız. nerde bir class ın ctor un da görürse olustacak.
+        private readonly ITransientDateService _transientDateService;
 
-        public HomeController(IScopedDateService scopedDateService)
+        public HomeController(ITransientDateService transientDateService)
         {
-            _scopedDateService = scopedDateService;
+            _transientDateService = transientDateService;
         }
 
-        public IActionResult Index([FromServices] IScopedDateService scopedDateService2)
+        public IActionResult Index([FromServices] ITransientDateService transientDateService2)
         {
-            ViewBag.time1 = _scopedDateService.GetDateTime.TimeOfDay.ToString();
-            ViewBag.time2 = scopedDateService2.GetDateTime.TimeOfDay.ToString(); 
+            ViewBag.time1 = _transientDateService.GetDateTime.TimeOfDay.ToString();
+            ViewBag.time2 = transientDateService2.GetDateTime.TimeOfDay.ToString(); 
             return View();
         }
 
