@@ -6,17 +6,18 @@ namespace IoC.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ISingletonDateService _singletonDateService;
+        // Bir request bir nesne olusacak ve onu kullanacak. Yani her requestte yenisi olusacak.
+        private readonly IScopedDateService _scopedDateService;
 
-        public HomeController(ISingletonDateService singletonDateService)
+        public HomeController(IScopedDateService scopedDateService)
         {
-            _singletonDateService = singletonDateService;
+            _scopedDateService = scopedDateService;
         }
 
-        public IActionResult Index([FromServices] ISingletonDateService singletonDateService2)
+        public IActionResult Index([FromServices] IScopedDateService scopedDateService2)
         {
-            ViewBag.time1 = _singletonDateService.GetDateTime.TimeOfDay.ToString();
-            ViewBag.time2 = singletonDateService2.GetDateTime.TimeOfDay.ToString(); // BUrada yeni nesne olusmayacak singleton olduğu için. yukarıdakini kullanacak
+            ViewBag.time1 = _scopedDateService.GetDateTime.TimeOfDay.ToString();
+            ViewBag.time2 = scopedDateService2.GetDateTime.TimeOfDay.ToString(); 
             return View();
         }
 
