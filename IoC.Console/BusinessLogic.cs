@@ -11,7 +11,7 @@ namespace IoC.Console
         private DataAccessLayer _layer { get; set; }
         public BusinessLogic()
         {
-            _layer = new DataAccessLayer();
+            _layer = DataAccessLayerFactory.GetDataAccessLayer();
         }
         public List<Product> GetProducts()
         {
