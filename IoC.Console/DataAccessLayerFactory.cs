@@ -8,7 +8,7 @@ namespace IoC.Console
 {
     public class DataAccessLayerFactory
     {
-        public static DataAccessLayer GetDataAccessLayer()
+        public static IDataAccessLayer GetDataAccessLayer()
         {
             return new DataAccessLayer();
         }

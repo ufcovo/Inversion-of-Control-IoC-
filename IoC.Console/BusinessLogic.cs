@@ -8,7 +8,7 @@ namespace IoC.Console
 {
     public class BusinessLogic
     {
-        private DataAccessLayer _layer { get; set; }
+        private IDataAccessLayer _layer { get; set; }
         public BusinessLogic()
         {
             _layer = DataAccessLayerFactory.GetDataAccessLayer();
